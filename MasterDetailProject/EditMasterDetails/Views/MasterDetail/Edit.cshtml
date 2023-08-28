@@ -1,0 +1,298 @@
+﻿
+@model EditMasterDetails.Models.OrderviewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>OrderMaster</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.orderMaster.Order_No, new { @class = "form-control", @id = "orderNumber" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.orderMaster.Table_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(model => model.orderMaster.Table_ID, new { @class = "form-control", @id = "tableId" })
+            @Html.ValidationMessageFor(model => model.orderMaster.Table_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.orderMaster.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.orderMaster.Description, new { @class = "form-control", @id = "description" })
+            @Html.ValidationMessageFor(model => model.orderMaster.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.orderMaster.Order_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.orderMaster.Order_DATE, new { @class = "form-control", @id = "masterdate" })
+            @Html.ValidationMessageFor(model => model.orderMaster.Order_DATE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.orderMaster.Waiter_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.orderMaster.Waiter_Name, new { @class = "form-control", @id = "writer" })
+            @Html.ValidationMessageFor(model => model.orderMaster.Waiter_Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*========Details Parts (Starts)=========*@
+
+    <h4>Order Details List</h4>
+    @*<div class="form-group">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderDetail.Order_No)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderDetail.Item_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderDetail.Notes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderDetail.QTY)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderDetail.Price)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order_No)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Item_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Notes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QTY)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditDetailsDataTemporary", new { id = item.Order_Detail_No }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Order_Detail_No }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Order_Detail_No })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>*@
+
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title">Order Details</div>
+            </div>
+            <div class="panel-body">
+                @*@Html.TextBox("IndexId", null, new { @class = "form-control" })*@
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("OrdItemName", "Item Name", new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.TextBox("OrdItemName", null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.orderDetail.Item_Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="form-group">
+                            @Html.Label("OrdNotes", "Ord Notes", new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.TextBox("OrdNotes", null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.orderDetail.Notes, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.Label("OrdQTY", "Ord QTY", new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.TextBox("OrdQTY", null, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="form-group">
+                            @Html.Label("OrdPrice", "Ord Price", new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                @Html.TextBox("OrdPrice", null, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+
+                <div class="col-md-4 col-md-offset-8">
+                    <input id="AddBtn" type="button" value="Add" class="btn btn-info" />
+                    <input id="UpdateBtn" type="button" value="Update" class="btn btn-info" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title">Added Order Details New Items here</div>
+            </div>
+            <div class="panel-body">
+                <table id="table2" class="table table-bordered table-hover table-striped table-responsive">
+                    <thead>
+                        <tr style="background-color:teal;color:white;font-weight:bold">
+                            <td>Sl No.</td>
+                            <td>Item Nmae</td>
+                            <td>Note</td>
+                            <td>Qty</td>
+                            <td>Price</td>
+                            <td colspan="2" style="text-align:center">Update/Remove</td>
+                        </tr>
+                    </thead>
+                    <tbody id="OrdDetailTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title">Added Order Details Items</div>
+            </div>
+            <div class="panel-body">
+                <table id="table" class="table table-bordered table-hover table-striped table-responsive" style="text-align:left">
+                    @*<thead>
+                            <tr style="background-color:teal;color:white;font-weight:bold">
+                                <td>Sl No.</td>
+                                <td>Item Nmae</td>
+                                <td>Note</td>
+                                <td>Qty</td>
+                                <td>Price</td>
+                                <td colspan="2" style="text-align:center">Update/Remove</td>
+                            </tr>
+                        </thead>
+                        <tbody id="OrdDetailTable"></tbody>*@
+                    <thead>
+                        <tr>
+                            @*<th style="visibility:hidden"></th>*@
+                            <th>Ord Detail Id</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.orderDetail.Order_No)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.orderDetail.Item_Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.orderDetail.Notes)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.orderDetail.QTY)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.orderDetail.Price)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderDetails)
+                        {
+                            <tr>
+                                @*<td style="visibility:hidden"> @Html.HiddenFor(modelItem => item.Order_Detail_No)</td>*@
+                                @*<td> @Html.HiddenFor(modelItem => item.Order_Detail_No)</td>*@
+                                <td> @Html.DisplayFor(modelItem => item.Order_Detail_No)</td>
+
+
+                                <td>
+
+                                    @*@Html.EditorFor(modelItem => item.Order_No, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                    @Html.DisplayFor(modelItem => item.Order_No)
+
+                                </td>
+                                <td>
+                                    @*@Html.EditorFor(modelItem => item.Item_Name, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.DisplayFor(modelItem => item.Item_Name)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Notes)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QTY)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+
+                                </td>
+                                <td>
+                                    <input class='btn btn-primary btnEdit' type='button' value='Edit' />
+
+                                    @*@Html.ActionLink("Edit", "EditDetailsDataTemporary", new { id = item.Order_Detail_No }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Order_Detail_No }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Order_Detail_No })*@
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @*========Details Parts (End)=========*@
+
+    <div class="clearfix"></div>
+
+    <div class="form-group">
+        <div class="col-md-4 col-md-offset-5">
+            @*<input type="submit" value="Update" class="btn btn-success" />*@
+            <button type="button" class="btn btn-success" id="textButton">Save</button>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/OrderCreate/OederUpdate.js"></script>
+}
+
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EditMasterDetails.OrderMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Table_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Waiter_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Table_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order_DATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Waiter_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Order_No }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Order_No }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Order_No })
+            </td>
+        </tr>
+    }
+
+</table>

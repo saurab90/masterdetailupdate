@@ -1,0 +1,14 @@
+1. Controller name MasterDetails
+2. Db Tables -
+OrderMaster, OrderDetails in VatDb Database name.
+
+3. Js For MasterDetails in OrderCreate Folder-
+
+	For Create- OrderJs
+	For Edit - OrderUpdateJs
+
+4. Delete task should be saperate Form because it is very
+much sansative . that's why it's not added in Same 
+MasterDeatils Form.
+
+
